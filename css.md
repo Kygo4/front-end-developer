@@ -109,7 +109,7 @@ p{
 
 ## CSS书写规范
 
-> * 位置属性（`position`，`top,right`，`z-index`，`display`，`float` 等）
+> * 位置属性（`position`，`top`，`right`，`z-index`，`display`，`float` 等）
 > * 大小（`width`，`height`，`padding`，`margin` 等）
 > * 文字系列（`font`，`line-height`，`letter-spacing`，`color`，`text-align` 等）
 > * 背景（`background`，`border` 等）
