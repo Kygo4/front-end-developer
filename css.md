@@ -109,7 +109,7 @@ p{
 
 ## CSS书写规范
 
-> * 位置属性（`position`，`top`，`right`，`z-index`，`display`，`float` 等）
+> * 位置属性（`position`，`top`，`right`，`bottom`，`left`，`z-index`，`display`，`float` 等）
 > * 大小（`width`，`height`，`padding`，`margin` 等）
 > * 文字系列（`font`，`line-height`，`letter-spacing`，`color`，`text-align` 等）
 > * 背景（`background`，`border` 等）
@@ -123,22 +123,22 @@ p{
 
 ```html
 <!--外盒尺寸计算（元素空间尺寸）-->
-Element空间宽度 = content width + padding + border + margin
-Element空间高度 = content height + padding + border + margin
+Element 空间宽度 = content width + padding + border + margin
+Element 空间高度 = content height + padding + border + margin
 <!--内盒尺寸计算（元素大小）-->
-Element Width = content width + padding + border（Width为内容宽度）
-Element Height = content height + padding + border（Height为内容高度)
+Element Width = content width + padding + border（width 为内容宽度）
+Element Height = content height + padding + border（height 为内容高度)
 ```
 
 - IE传统下Box Model（IE 盒子模型）
 
 ```html
 <!--外盒尺寸计算（元素空间尺寸）（占据的空间）-->
-Element空间宽度 = content Width + margin (Width包含了元素内容宽度、边框宽度、内距宽度)
-Element空间高度 = content Height + margin (Height包含了元素内容宽度，边框宽度，内距宽度)
+Element 空间宽度 = content width + margin (width 包含了元素内容宽度、边框宽度、内距宽度)
+Element 空间高度 = content height + margin (height 包含了元素内容宽度、边框宽度、内距宽度)
 <!--内盒尺寸计算（元素大小）（盒子的实际大小）-->
-Element Width = content Width(Width包含了元素内容宽度、边框宽度、内距宽度)
-Element Height = content Height(Height包含了元素内容宽度，边框宽度，内距宽度)
+Element Width = content width(width 包含了元素内容宽度、边框宽度、内距宽度)
+Element Height = content height(height 包含了元素内容宽度、边框宽度、内距宽度)
 
 ```
 
@@ -150,7 +150,7 @@ W3C 盒子模型的范围包括 `content`、`padding`、`border`、`margin`，�
 
 > - `px`：相对长度单位，相对于显示屏幕分辨率而言（像素单位）；
 > - `em`：相对长度单位，相对于当前对象内文本的字体尺寸。如当前对行内文本的字体尺寸未被人为设置，则相对于浏览器的默认字体尺寸。（`em` 的值并不是固定不变的，`em` 会继承父级元素的字体大小）；
-**例如**：`body` 里设置 `font-size:100%;` 则 `16px=1em; 12px=0.75em; 10px=0.625em;`。`body` 里设置 `font-size:62.5%; 16px*62.5%=10px; 12px=1.2em; 10px=1em;`；
+**例如**：`body` 里设置 `font-size: 100%;` 则 `16px = 1em; 12px = 0.75em; 10px = 0.625em;`。`body` 里设置 `font-size: 62.5%; 16px * 62.5% = 10px; 12px = 1.2em; 10px = 1em;`；
 > - `rem`：CSS3 相对长度单位，相对于 HTML 根目录（除 IE8 及更早版本外，所有浏览器均已支持 `rem`）。
 > - `pt`：磅（`1pt = 1/72 in`），标准印刷上常用的单位，一般用于页面打印排版。
 
@@ -181,7 +181,7 @@ CSS hack 有三种表现形式：**CSS 类内部 Hack**、**选择器 Hack**、*
 
 - **选择器 Hack**（选择器前缀法）
 
-例如 IE6 能识别 `*html .class{}`，IE7 能识别 `*+html .class{}` 或者 `*:first-child+html .class{}`。
+例如 IE6 能识别 `*html .class{}`，IE7 能识别 `*+html .class{}` 或者 `*:first-child + html .class{}`。
 
 - **HTML 条件注释 Hack**（IE 条件注释法)
 
@@ -224,10 +224,10 @@ CSS hack 有三种表现形式：**CSS 类内部 Hack**、**选择器 Hack**、*
 
 ## position属性值
 
-> * `absolute`：生成绝对定位的元素，相对于 `static` 定位以外的第一个父元素进行定位。父级无 `absolute`、`relative`，相对于 HTML。（整个元素飘出文档流，而且元素自身的物理空间也同时消失。）
+> * `absolute`：生成绝对定位的元素，相对于 `static` 定位以外的第一个父元素进行定位。（整个元素飘出文档流，而且元素自身的物理空间也同时消失。）
 > * `fixed`：生成绝对定位的元素，相对于浏览器窗口进行定位。
 > * `relative`：生成相对定位的元素，相对于其正常位置进行定位。（物理空间依然存在，相对定位不影响其他相邻的元素。）
-> * `static`：默认值，没有定位。元素出现在正常的流中。（忽略 `top`、`bottom`、`left`、`right` 或者 `z-index`）
+> * `static`：默认值，没有定位。元素出现在正常的流中。（忽略 `top`、`right`、`bottom`、`left` 或者 `z-index`）
 > * `inherit`：规定应该从父元素继承 `position` 属性的值。
 
 ## display属性值
@@ -259,8 +259,8 @@ CSS hack 有三种表现形式：**CSS 类内部 Hack**、**选择器 Hack**、*
 ```css
 /* 第一种 */
 .left{
-    width: 100px;
     float: left;
+    width: 100px;
 }
 .right{
     margin-left: 100px;
@@ -297,8 +297,8 @@ CSS hack 有三种表现形式：**CSS 类内部 Hack**、**选择器 Hack**、*
     margin-right: 100px;
 }
 .right{
-    width: 100px;
     float: right;
+    width: 100px;
 }
 /* 第二种 */
 .left{
@@ -356,28 +356,28 @@ CSS hack 有三种表现形式：**CSS 类内部 Hack**、**选择器 Hack**、*
 /* 第三种 */
 /* 局限性：HTML 中先 center，后 left，再 right */
 .container{/* .left、.center 和 .right 的父级 */
-    padding:0 100px;
-    *overflow:hidden;
+    padding: 0 100px;
+    *overflow: hidden;
 }
 .center{
-    float:left;
-    width:100%;
+    float: left;
+    width: 100%;
 }
 .left,.right{
-    position:relative;
-    _display:inline;
+    position: relative;
+    _display: inline;
  }
 .left{
-    float:left;
-    width:100px;
-    margin-left:-100%;
-    right:100px;
-    _right:-200px;
+    right: 100px;
+    float: left;
+    width: 100px;
+    margin-left: -100%;
+    _right: -200px;
 }
 .right{
-    float:right;
-    width:100px;
-    margin-right:-100px;
+    float: right;
+    width: 100px;
+    margin-right: -100px;
 }
 /* 第四种 */
 .container{/* .left、.center 和 .right 的父级 */
@@ -429,9 +429,9 @@ CSS hack 有三种表现形式：**CSS 类内部 Hack**、**选择器 Hack**、*
 
 ```css
 li{
-    display:block;/* 内联元素需加 */
+    display: block;/* 内联元素需加 */
     width: 200px;
-    word-break:keep-all;/* 不换行 */
+    word-break: keep-all;/* 不换行 */
     white-space: nowrap;/* 不换行 */
     overflow: hidden;/* 内容超出宽度时隐藏超出部分的内容 */
     text-overflow: ellipsis;/* 省略号 */
@@ -440,7 +440,7 @@ li{
 
 ## 水平居中
 
-> - `margin: 0 auto;` 与 `text-aligh: center;`
+> - `margin: 0 auto;` 与 `text-align: center;`
 > - 相对定位 `position: relative;` 与负的边距 `margin-left`
 
 更多方法：[六种实现元素水平居中][2]
@@ -517,10 +517,10 @@ li{
 /* 第一种 增加额外一个元素 */
 .clear{
     clear: both;
-    /*IE*/
+    /* IE */
     height: 0;
-    line-height: 0;
     font-size: 0;
+    line-height: 0;
 }
 /* 第二种 overflow */
 .parent{
@@ -534,7 +534,7 @@ li{
 * html .parent{
     height: 1%;/* IE5/6 */
 }
-/* 第三种 伪元素:before、:after */
+/* 第三种 伪元素：before、:after */
 .parent:before,.parent:after{
     content: ".";
     display: block;
@@ -624,6 +624,7 @@ li{
     transform: scale(0);
 }
 ```
+
 
   [1]: https://github.com/bizhongbio/front-end-developer/blob/master/images/box-model.png
   [2]: http://www.w3cplus.com/css/elements-horizontally-center-with-css.html
